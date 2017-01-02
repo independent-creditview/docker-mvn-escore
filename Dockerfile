@@ -27,6 +27,10 @@ RUN apt-get autoremove && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# download common mvn dependencies
+ADD pom.xml /opt
+RUN mvn -f /opt/pom.xml verify
+
 ENTRYPOINT ["mvn"]
 CMD ["mvn"]
 
