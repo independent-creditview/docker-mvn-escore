@@ -20,7 +20,7 @@ RUN \
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
 # install mvn
-RUN apt-get install -y maven
+RUN apt-get install -y maven git
 
 # cleanup apt
 RUN apt-get autoremove && \
