@@ -27,9 +27,12 @@ RUN apt-get autoremove && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+RUN git config --global user.email "pipeline@bitbucket.org"
+RUN git config --global user.name "Pipeline"
+
 # download common mvn dependencies
 ADD pom.xml /opt
-RUN mvn -f /opt/pom.xml verify
+RUN mvn -f /opt/pom.xml scm:validate
 
 ENTRYPOINT ["mvn"]
 CMD ["mvn"]
